@@ -872,7 +872,7 @@
         function playRandomAudio() {
             const idx = Math.floor(Math.random() * randAudioFiles.length);
             const a = new Audio(randAudioFiles[idx]);
-            a.volume = 0.5; // Optional: lower volume a bit so it's not ear piercing
+            a.volume = 1.0;
             a.play().catch(e => console.log(e));
             setTimeout(() => {
                 a.pause();
@@ -894,9 +894,18 @@
             const audScream = document.getElementById('audio-scream');
 
             // Set start time to 1 second
-            if (audFailed) audFailed.currentTime = 1;
-            if (audRiser) audRiser.currentTime = 1;
-            if (audScream) audScream.currentTime = 1;
+            if (audFailed) {
+                audFailed.volume = 1.0;
+                audFailed.currentTime = 1;
+            }
+            if (audRiser) {
+                audRiser.volume = 1.0;
+                audRiser.currentTime = 1;
+            }
+            if (audScream) {
+                audScream.volume = 1.0;
+                audScream.currentTime = 1;
+            }
 
             // Short one loops
             if (audScream) audScream.loop = true;
@@ -1085,6 +1094,7 @@
                 if (!window.successAudio) {
                     window.successAudio = new Audio('audio/alert.mp3');
                 }
+                window.successAudio.volume = 1.0;
                 window.successAudio.currentTime = 0;
                 window.successAudio.loop = true;
                 window.successAudio.play().catch(e => console.log(e));
