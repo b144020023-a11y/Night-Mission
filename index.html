@@ -62,6 +62,36 @@
             animation: bgGlitch 0.2s linear infinite;
         }
 
+        .glitch-shake {
+            animation: boxGlitch 0.2s linear infinite;
+        }
+
+        @keyframes boxGlitch {
+            0% {
+                transform: translate(0)
+            }
+
+            20% {
+                transform: translate(-2px, 2px)
+            }
+
+            40% {
+                transform: translate(-2px, -2px)
+            }
+
+            60% {
+                transform: translate(2px, 2px)
+            }
+
+            80% {
+                transform: translate(2px, -2px)
+            }
+
+            100% {
+                transform: translate(0)
+            }
+        }
+
         @keyframes bgGlitch {
             0% {
                 background-color: rgba(220, 38, 38, 0.9);
@@ -202,6 +232,19 @@
             }
         }
 
+        .scrollbar-red::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.3);
+        }
+
+        .scrollbar-red::-webkit-scrollbar-thumb {
+            background: #881337;
+            border-radius: 4px;
+        }
+
+        .scrollbar-red::-webkit-scrollbar-thumb:hover {
+            background: #be123c;
+        }
+
         .watermark-overlay {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='60'%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' transform='rotate(30, 50, 30)' fill='rgba(153,27,27,0.5)' font-family='monospace' font-size='14px' font-weight='bold' letter-spacing='1px'%3EEVIDENCE%3C/text%3E%3C/svg%3E");
             pointer-events: none;
@@ -289,7 +332,7 @@
         <aside
             class="glass hidden md:flex flex-col w-64 border-r border-y-0 border-l-0 rounded-none shrink-0 p-4 gap-2">
             <div class="text-xs text-slate-500 font-mono mb-2 px-2 uppercase tracking-widest">ZPD SYSTEM MENU</div>
-            <button onclick="playRandomAudio()"
+            <button onclick="playSound('beep-warning).mp3')"
                 class="glass-btn flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sky-400 bg-sky-900/20 border-sky-500/50">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -298,7 +341,7 @@
                 </svg>
                 系統首頁
             </button>
-            <button onclick="playRandomAudio()"
+            <button onclick="playSound('horror-warning.mp3')"
                 class="glass-btn flex items-center gap-3 px-4 py-3 rounded-lg text-left text-slate-300">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -307,7 +350,7 @@
                 </svg>
                 案卷調閱系統
             </button>
-            <button onclick="playRandomAudio()"
+            <button onclick="playSound('creepy-laugh-2.mp3')"
                 class="glass-btn flex items-center gap-3 px-4 py-3 rounded-lg text-left text-slate-300">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -316,7 +359,7 @@
                 </svg>
                 法醫鑑定報告
             </button>
-            <button onclick="playRandomAudio()"
+            <button onclick="playSound('creepy-laugh.mp3')"
                 class="glass-btn flex items-center gap-3 px-4 py-3 rounded-lg text-left text-slate-300">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -366,7 +409,8 @@
                     <input type="text" id="case-search-input" placeholder="請輸入案件編號 (例: CASEXXXXX)"
                         class="flex-1 w-full bg-slate-900 border border-slate-700 text-slate-200 px-4 py-3 rounded-lg focus:outline-none focus:border-sky-500 focus:shadow-[0_0_15px_rgba(56,189,248,0.3)] transition-all uppercase font-mono tracking-widest text-base">
                     <button onclick="handleQuery()"
-                        class="glass-btn px-6 py-3 rounded-lg text-sky-400 font-bold whitespace-nowrap flex items-center justify-center tracking-widest bg-slate-800/80 hover:bg-sky-900/40">檢索 DATABASE</button>
+                        class="glass-btn px-6 py-3 rounded-lg text-sky-400 font-bold whitespace-nowrap flex items-center justify-center tracking-widest bg-slate-800/80 hover:bg-sky-900/40">檢索
+                        DATABASE</button>
                 </div>
                 <p id="query-error" class="text-rose-400 mt-2 text-xs font-mono hidden"></p>
             </section>
@@ -454,7 +498,7 @@
                                 <p
                                     class="text-sm text-slate-300 leading-relaxed bg-slate-900/30 p-3 rounded border border-slate-800">
                                     <strong
-                                        class="text-white">警方接獲報案抵達現場時，發現被害人（樹懶）倒臥於客廳地毯上，頸部遭一條棕色領帶緊緊纏繞，經初步勘驗死因為窒息死亡。</strong>嫌疑犯尼克已落網並坦承犯行。現場尋獲勒斃死者之作案工具（領帶），並於水杯與門把採集到嫌犯指紋。嫌犯自白書表示因私人恩怨痛下殺手。
+                                        class="text-white">警方接獲報案抵達現場時，發現被害人（樹懶）倒臥於客廳地毯上，右手臂上有一枚約2公分彈孔，經檢查後確認死亡。</strong>嫌疑犯尼克已落網並坦承犯行。已尋獲作案工具，並於案發現場採集到嫌犯指紋。嫌犯自白書表示因陳年往事積怨已久而痛下殺手。
                                 </p>
                             </div>
 
@@ -485,8 +529,8 @@
 
                     <!-- Version History Button -->
                     <button onclick="openVersionModal()"
-                        class="absolute bottom-4 right-4 text-[10px] text-slate-600 hover:text-sky-400 transition-colors bg-transparent border-none uppercase tracking-widest px-2 py-1">
-                        版本紀錄
+                        class="absolute bottom-4 right-4 text-sm opacity-20 grayscale brightness-50 hover:opacity-100 hover:grayscale-0 hover:brightness-100 transition-all bg-transparent border-none cursor-pointer">
+                        💡
                     </button>
                 </section>
             </template>
@@ -574,22 +618,22 @@
                     內部機密通報
                 </h2>
                 <div class="space-y-3">
-                    <div onclick="playRandomAudio()"
+                    <div onclick="playSound('girl-scream.mp3')"
                         class="bg-slate-800/50 p-3 rounded border border-slate-700 hover:border-slate-500 transition-colors flex gap-3 cursor-pointer">
                         <span class="text-rose-400 text-xs font-mono font-bold shrink-0 mt-0.5">[人事異動]</span>
                         <p class="text-sm text-slate-300">4/15 茱蒂警官因重大執法疏失，榮譽一等獎撤銷公告，即日生效。</p>
                     </div>
-                    <div onclick="playRandomAudio()"
+                    <div onclick="playSound('woman-screaming.mp3')"
                         class="bg-slate-800/50 p-3 rounded border border-slate-700 hover:border-slate-500 transition-colors flex gap-3 cursor-pointer">
                         <span class="text-sky-400 text-xs font-mono font-bold shrink-0 mt-0.5">[內部通報]</span>
                         <p class="text-sm text-slate-300">5/6 馬市長公開表揚重案組迅速偵破 5/5 高級公寓樹懶命案。</p>
                     </div>
-                    <div onclick="playRandomAudio()"
+                    <div onclick="playSound('scream.mp3')"
                         class="bg-amber-900/20 p-3 rounded border border-amber-700/50 hover:border-amber-500/80 transition-colors flex gap-3 cursor-pointer">
                         <span class="text-amber-500 text-xs font-mono font-bold shrink-0 mt-0.5">[警告]</span>
                         <p class="text-sm text-slate-300">近期發現黑市器官交易流竄，各單位請加強夜間巡邏。</p>
                     </div>
-                    <div onclick="playRandomAudio()"
+                    <div onclick="playSound('alert.mp3')"
                         class="bg-slate-800/50 p-3 rounded border border-slate-700 hover:border-slate-500 transition-colors flex gap-3 cursor-pointer">
                         <span class="text-slate-400 text-xs font-mono font-bold shrink-0 mt-0.5">[系統公告]</span>
                         <p class="text-sm text-slate-300">伺服器將於本週五凌晨進行安全升級。</p>
@@ -602,34 +646,60 @@
         <aside
             class="glass hidden lg:flex flex-col w-64 border-l border-y-0 border-r-0 rounded-none shrink-0 p-4 gap-4">
             <!-- Duty Officer Widget -->
-            <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700 cursor-pointer hover:border-sky-500/50 transition-colors group" onclick="playRandomAudio()">
-                <h3 class="text-xs text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider mb-3 flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg> 城市監控網段</h3>
+            <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700 cursor-pointer hover:border-sky-500/50 transition-colors group"
+                onclick="playSound('woman-screaming.mp3')">
+                <h3
+                    class="text-xs text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                        </path>
+                    </svg> 城市監控網段
+                </h3>
                 <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded bg-slate-800 border-2 border-slate-600 overflow-hidden relative group-hover:border-sky-500/50 transition-colors flex items-center justify-center">
-                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-400 to-transparent mix-blend-screen group-hover:opacity-40 animate-pulse"></div>
-                        <svg class="w-6 h-6 text-slate-500 group-hover:text-sky-400 z-10 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    <div
+                        class="w-12 h-12 rounded bg-slate-800 border-2 border-slate-600 overflow-hidden relative group-hover:border-sky-500/50 transition-colors flex items-center justify-center">
+                        <div
+                            class="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-sky-400 to-transparent mix-blend-screen group-hover:opacity-40 animate-pulse">
+                        </div>
+                        <svg class="w-6 h-6 text-slate-500 group-hover:text-sky-400 z-10 transition-colors" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z">
+                            </path>
                         </svg>
                     </div>
                     <div>
-                        <div class="font-bold text-slate-200 text-sm group-hover:text-sky-300 transition-colors">CAM-SQUARE-01</div>
+                        <div class="font-bold text-slate-200 text-sm group-hover:text-sky-300 transition-colors">
+                            CAM-SQUARE-01</div>
                         <div class="text-xs text-slate-400">撒哈拉廣場</div>
                         <div class="text-[10px] text-emerald-400 mt-1 flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-[pulse_1.5s_infinite]"></span> LIVE FEED
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-[pulse_1.5s_infinite]"></span>
+                            LIVE FEED
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- System Status Widget -->
-            <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700 cursor-pointer hover:border-sky-500/50 transition-colors group" onclick="playRandomAudio()">
-                <h3 class="text-xs text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider mb-3 flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path></svg> 跨區通訊陣列</h3>
+            <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700 cursor-pointer hover:border-sky-500/50 transition-colors group"
+                onclick="playSound('girl-scream.mp3')">
+                <h3
+                    class="text-xs text-slate-500 group-hover:text-sky-400 transition-colors uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0">
+                        </path>
+                    </svg> 跨區通訊陣列
+                </h3>
                 <div class="space-y-4">
                     <div>
                         <div class="flex justify-between text-xs mb-1">
                             <span class="text-slate-400 group-hover:text-slate-200 transition-colors">中央發射塔訊號</span>
-                            <span class="text-sky-400 font-mono group-hover:shadow-[0_0_5px_#38bdf8] transition-shadow">SECURE</span>
+                            <span
+                                class="text-sky-400 font-mono group-hover:shadow-[0_0_5px_#38bdf8] transition-shadow">SECURE</span>
                         </div>
                         <div class="w-full h-2 flex gap-1">
                             <div class="bg-sky-500 h-full flex-1 rounded-sm animate-[pulse_1.5s_infinite]"></div>
@@ -642,11 +712,14 @@
                     <div>
                         <div class="flex justify-between text-xs mb-1">
                             <span class="text-slate-400 group-hover:text-slate-200 transition-colors">外部存取請求</span>
-                            <span class="text-emerald-400 font-mono group-hover:shadow-[0_0_5px_#10b981] transition-shadow">BLOCKED</span>
+                            <span
+                                class="text-emerald-400 font-mono group-hover:shadow-[0_0_5px_#10b981] transition-shadow">BLOCKED</span>
                         </div>
                         <div class="w-full h-2 flex gap-1">
                             <div class="bg-emerald-500 h-full flex-1 rounded-sm opacity-50"></div>
-                            <div class="bg-emerald-500 h-full flex-[2] rounded-sm bg-[repeating-linear-gradient(45deg,transparent,transparent_2px,rgba(0,0,0,0.2)_2px,rgba(0,0,0,0.2)_4px)]"></div>
+                            <div
+                                class="bg-emerald-500 h-full flex-[2] rounded-sm bg-[repeating-linear-gradient(45deg,transparent,transparent_2px,rgba(0,0,0,0.2)_2px,rgba(0,0,0,0.2)_4px)]">
+                            </div>
                             <div class="bg-emerald-500 h-full flex-1 rounded-sm opacity-50"></div>
                         </div>
                     </div>
@@ -687,7 +760,6 @@
                 <div class="bg-sky-900/30 p-3 rounded border border-sky-800/50 mt-4">
                     <span class="text-sky-400 font-bold block mb-1">【更新內容】</span>
                     <ul class="list-disc list-inside space-y-1">
-                        <li>新增版本紀錄功能</li>
                         <li>優化生物辨識登入模組（已修正角鼻龍無法掃描鼻紋之問題）</li>
                         <li>強化各分局跨區連線加密協定至 AES-512</li>
                         <li>修復夜間模式下「紅蘿蔔農場地圖」顯示異常的 Bug</li>
@@ -703,10 +775,21 @@
 
     <!-- Version Modal / Decryption -->
     <div id="version-modal"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 backdrop-blur-md hidden">
-        <div id="modal-content" class="glass rounded-xl p-8 max-w-md w-full border-slate-600 relative overflow-hidden">
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 backdrop-blur-md hidden overflow-hidden">
 
-            <div id="decryption-step">
+        <!-- Global Matrix Background (covers screen outside modal) -->
+        <div id="global-matrix-bg"
+            class="hidden absolute inset-0 z-0 overflow-hidden text-green-500/40 font-mono text-sm break-all leading-none pointer-events-none flex flex-wrap content-start">
+        </div>
+
+        <div id="modal-content"
+            class="glass rounded-xl p-8 max-w-md w-full border-slate-600 relative overflow-hidden z-10">
+            <!-- Matrix Background (covers entire modal) -->
+            <div id="matrix-bg"
+                class="hidden absolute inset-0 z-0 overflow-hidden text-red-600/40 font-mono text-sm break-all leading-none pointer-events-none flex flex-wrap content-start bg-black opacity-80">
+            </div>
+
+            <div id="decryption-step" class="relative z-10">
                 <h3 class="text-xl font-bold text-slate-200 mb-2 font-mono">ENCRYPTED ARCHIVE ACCESS</h3>
                 <p class="text-xs text-rose-400 mb-6 font-mono">RESTRICTED TO LEVEL 5 OMEGA CLEARANCE.</p>
 
@@ -726,27 +809,166 @@
                 </div>
             </div>
 
-            <div id="truth-step" class="hidden">
-                <!-- Background Glitch CSS class will be applied to #modal-content -->
-                <div class="relative z-10">
-                    <div class="animate-[pulse_2s_infinite]">
-                        <h3 class="text-2xl font-black text-rose-500 mb-2 uppercase tracking-widest glow-text-red">
-                            真實鑑識報告</h3>
-                        <div class="bg-rose-950/80 border-l-4 border-rose-600 p-2 mb-4">
-                            <span class="text-white text-xs font-bold">【警告：此真實紀錄已被馬市長辦公室下令銷毀】</span>
+            <div id="truth-step" class="hidden h-[60vh] w-full relative z-10">
+
+                <div class="flex flex-col h-full w-full relative z-10">
+                    <div
+                        class="relative z-10 flex-1 overflow-y-auto pr-2 space-y-4 font-sans text-sm pb-4 scrollbar-red">
+                        <!-- Mayor -->
+                        <div class="flex justify-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-red-600 border-2 border-red-400 shrink-0 shadow-[0_0_15px_rgba(255,0,0,0.8)]">
+                            </div>
+                            <div
+                                class="bg-red-950/80 backdrop-blur-md border-2 border-red-500 shadow-[0_0_20px_rgba(255,0,0,0.6)] rounded-lg rounded-tl-none px-4 py-3 max-w-[80%] text-red-50 font-bold text-base tracking-wide glow-text-red">
+                                樹懶命案的調查進度到哪了？媒體已經快把市府的電話打爆了。
+                            </div>
+                        </div>
+                        <!-- Chief -->
+                        <div class="flex justify-end gap-3">
+                            <div
+                                class="bg-rose-950/80 backdrop-blur-md border-2 border-rose-500 shadow-[0_0_20px_rgba(255,0,50,0.6)] rounded-lg rounded-tr-none px-4 py-3 max-w-[80%] text-rose-50 font-bold text-base tracking-wide glow-text-red">
+                                專案小組還在釐清幾處關鍵疑點，目前正準備調閱監視器畫面，需要一點時間。
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full bg-rose-600 border-2 border-rose-400 shrink-0 shadow-[0_0_15px_rgba(255,0,50,0.8)]">
+                            </div>
+                        </div>
+                        <!-- Mayor -->
+                        <div class="flex justify-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-red-600 border-2 border-red-400 shrink-0 shadow-[0_0_15px_rgba(255,0,0,0.8)]">
+                            </div>
+                            <div
+                                class="bg-red-950/80 backdrop-blur-md border-2 border-red-500 shadow-[0_0_20px_rgba(255,0,0,0.6)] rounded-lg rounded-tl-none px-4 py-3 max-w-[80%] text-red-50 font-bold text-base tracking-wide glow-text-red">
+                                不要浪費時間去查那些無關緊要的東西了。我直接跟你交個底：殺害樹懶的兇手就是尼克。
+                            </div>
+                        </div>
+                        <!-- Chief -->
+                        <div class="flex justify-end gap-3">
+                            <div
+                                class="bg-rose-950/80 backdrop-blur-md border-2 border-rose-500 shadow-[0_0_20px_rgba(255,0,50,0.6)] rounded-lg rounded-tr-none px-4 py-3 max-w-[80%] text-rose-50 font-bold text-base tracking-wide glow-text-red">
+                                尼克？可是目前的現場證據並不足以直接將他定罪，如果現在就草率結案……
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full bg-rose-600 border-2 border-rose-400 shrink-0 shadow-[0_0_15px_rgba(255,0,50,0.8)]">
+                            </div>
+                        </div>
+                        <!-- Mayor -->
+                        <div class="flex justify-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-red-600 border-2 border-red-400 shrink-0 shadow-[0_0_15px_rgba(255,0,0,0.8)]">
+                            </div>
+                            <div
+                                class="bg-red-950/80 backdrop-blur-md border-2 border-red-500 shadow-[0_0_20px_rgba(255,0,0,0.6)] rounded-lg rounded-tl-none px-4 py-3 max-w-[80%] text-red-50 font-bold text-base tracking-wide glow-text-red">
+                                這不是草率，是顧全大局。你必須立刻以尼克為兇手快速結案。
+                            </div>
+                        </div>
+                        <!-- Mayor -->
+                        <div class="flex justify-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-red-600 border-2 border-red-400 shrink-0 shadow-[0_0_15px_rgba(255,0,0,0.8)]">
+                            </div>
+                            <div
+                                class="bg-red-950/80 backdrop-blur-md border-2 border-red-500 shadow-[0_0_20px_rgba(255,0,0,0.6)] rounded-lg rounded-tl-none px-4 py-3 max-w-[80%] text-red-50 font-bold text-base tracking-wide glow-text-red">
+                                聽著，警政署長的位子下個月就要空出來了。只要這件案子能乾淨俐落地解決，我會親自出面，全力舉薦你出任署長。以你的資歷，加上這份破案功勞，這位置非你莫屬。
+                            </div>
+                        </div>
+                        <!-- Chief -->
+                        <div class="flex justify-end gap-3">
+                            <div
+                                class="bg-rose-950/80 backdrop-blur-md border-2 border-rose-500 shadow-[0_0_20px_rgba(255,0,50,0.6)] rounded-lg rounded-tr-none px-4 py-3 max-w-[80%] text-rose-50 font-bold text-base tracking-wide glow-text-red">
+                                但這不符合乎警方的辦案程序...
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full bg-rose-600 border-2 border-rose-400 shrink-0 shadow-[0_0_15px_rgba(255,0,50,0.8)]">
+                            </div>
+                        </div>
+                        <!-- Mayor -->
+                        <div class="flex justify-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-red-600 border-2 border-red-400 shrink-0 shadow-[0_0_15px_rgba(255,0,0,0.8)]">
+                            </div>
+                            <div
+                                class="bg-red-950/80 backdrop-blur-md border-2 border-red-500 shadow-[0_0_20px_rgba(255,0,0,0.6)] rounded-lg rounded-tl-none px-4 py-3 max-w-[80%] text-red-50 font-bold text-base tracking-wide glow-text-red">
+                                程序是死的人是活的。你以為我這麼要求是為了誰？案子拖得越久，茱蒂就越危險，你難道想看到那隻兔子出事嗎？快速結案不只是為了保護茱蒂，更是為了保護你們警局岌岌可危的名譽！再拖下去，市民對警方的信任就要徹底破產了。
+                            </div>
+                        </div>
+                        <!-- Mayor -->
+                        <div class="flex justify-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-red-600 border-2 border-red-400 shrink-0 shadow-[0_0_15px_rgba(255,0,0,0.8)]">
+                            </div>
+                            <div
+                                class="bg-red-950/80 backdrop-blur-md border-2 border-red-500 shadow-[0_0_20px_rgba(255,0,0,0.6)] rounded-lg rounded-tl-none px-4 py-3 max-w-[80%] text-red-50 font-bold text-base tracking-wide glow-text-red">
+                                我是個念舊情的人，所以才把高升的機會留給你。但如果你還是堅持要用你的「程序」來辦事，那市府這邊恐怕很難再給警局更多的支持了。你最近應該已經深刻感受到，議會審查警局預算和人事編制時有多「嚴格」了吧？
+                            </div>
+                        </div>
+                        <!-- Mayor -->
+                        <div class="flex justify-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-red-600 border-2 border-red-400 shrink-0 shadow-[0_0_15px_rgba(255,0,0,0.8)]">
+                            </div>
+                            <div
+                                class="bg-red-950/80 backdrop-blur-md border-2 border-red-500 shadow-[0_0_20px_rgba(255,0,0,0.6)] rounded-lg rounded-tl-none px-4 py-3 max-w-[80%] text-red-50 font-bold text-base tracking-wide glow-text-red">
+                                我不希望我們未來的溝通，還得繼續面臨這種處處受限的狀況。你明白我的意思嗎？
+                            </div>
+                        </div>
+                        <!-- Chief -->
+                        <div class="flex justify-end gap-3">
+                            <div
+                                class="bg-rose-950/80 backdrop-blur-md border-2 border-rose-500 shadow-[0_0_20px_rgba(255,0,50,0.6)] rounded-lg rounded-tr-none px-4 py-3 max-w-[80%] text-rose-50 font-bold text-base tracking-wide glow-text-red">
+                                ……
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full bg-rose-600 border-2 border-rose-400 shrink-0 shadow-[0_0_15px_rgba(255,0,50,0.8)]">
+                            </div>
+                        </div>
+                        <!-- Chief -->
+                        <div class="flex justify-end gap-3">
+                            <div
+                                class="bg-rose-950/80 backdrop-blur-md border-2 border-rose-500 shadow-[0_0_20px_rgba(255,0,50,0.6)] rounded-lg rounded-tr-none px-4 py-3 max-w-[80%] text-rose-50 font-bold text-base tracking-wide glow-text-red">
+                                我明白了。
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full bg-rose-600 border-2 border-rose-400 shrink-0 shadow-[0_0_15px_rgba(255,0,50,0.8)]">
+                            </div>
+                        </div>
+                        <!-- Chief -->
+                        <div class="flex justify-end gap-3">
+                            <div
+                                class="bg-rose-950/80 backdrop-blur-md border-2 border-rose-500 shadow-[0_0_20px_rgba(255,0,50,0.6)] rounded-lg rounded-tr-none px-4 py-3 max-w-[80%] text-rose-50 font-bold text-base tracking-wide glow-text-red">
+                                我會指示下面的人調整偵辦方向。明天早上，警局就會召開記者會，宣布偵破樹懶命案，主嫌為尼克，全案移送法辦。
+                            </div>
+                            <div
+                                class="w-8 h-8 rounded-full bg-rose-600 border-2 border-rose-400 shrink-0 shadow-[0_0_15px_rgba(255,0,50,0.8)]">
+                            </div>
+                        </div>
+                        <!-- Mayor -->
+                        <div class="flex justify-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-red-600 border-2 border-red-400 shrink-0 shadow-[0_0_15px_rgba(255,0,0,0.8)]">
+                            </div>
+                            <div
+                                class="bg-red-950/80 backdrop-blur-md border-2 border-red-500 shadow-[0_0_20px_rgba(255,0,0,0.6)] rounded-lg rounded-tl-none px-4 py-3 max-w-[80%] text-red-50 font-bold text-base tracking-wide glow-text-red">
+                                明智的決定。我會好好期待明天的好消息。
+                            </div>
+                        </div>
+                        <!-- Mayor -->
+                        <div class="flex justify-start gap-3">
+                            <div
+                                class="w-8 h-8 rounded-full bg-red-600 border-2 border-red-400 shrink-0 shadow-[0_0_15px_rgba(255,0,0,0.8)]">
+                            </div>
+                            <div
+                                class="bg-red-950/80 backdrop-blur-md border-2 border-red-500 shadow-[0_0_20px_rgba(255,0,0,0.6)] rounded-lg rounded-tl-none px-4 py-3 max-w-[80%] text-red-50 font-bold text-base tracking-wide glow-text-red">
+                                我未來的署長。
+                            </div>
                         </div>
                     </div>
-
-                    <ul
-                        class="space-y-4 text-sm text-slate-100 font-mono leading-relaxed bg-black/60 p-4 rounded border border-rose-900/50">
-                        <li><span class="text-rose-400 font-bold">彈孔：</span> 未在死者身上發現。</li>
-                        <li><span class="text-rose-400 font-bold">勒痕：</span> 深度過淺，研判為死後造成（死後才套上領帶偽造）。</li>
-                        <li><span class="text-rose-400 font-bold">毒素：</span> 臟器有不明化學反應（農藥）。</li>
-                    </ul>
-
-                    <button onclick="closeVersionModal()"
-                        class="w-full mt-6 bg-transparent border border-rose-500 text-rose-500 py-2 rounded hover:bg-rose-500 hover:text-black transition-colors uppercase text-sm font-bold font-mono">PURGE
-                        CACHE & CLOSE</button>
+                    <div class="relative z-10 shrink-0 mt-4">
+                        <button onclick="closeVersionModal()"
+                            class="w-full bg-red-700 text-white py-2 rounded border-2 border-red-500 shadow-[0_0_15px_rgba(255,0,0,0.8)] hover:bg-red-600 hover:shadow-[0_0_25px_rgba(255,0,0,1)] transition-all uppercase text-sm font-bold font-mono tracking-widest">CLOSE</button>
+                    </div>
                 </div>
             </div>
 
@@ -804,7 +1026,7 @@
                 suspect: { name: "卡米爾 (Camille)", species: "變色龍", age: "28歲", job: "前衛藝術家 / 詐欺慣犯", record: "偽造文書（因為印章顏色總是蓋錯而穿幫）。", features: "一緊張就會不受控制地變成棋盤格圖案。" },
                 img: "image/lizard.png"
             },
-            "CASE-91028346": {
+            "CASE91028346": {
                 tit: "【大規模毀滅性甜點引發之公共危險案】",
                 time: "5月4日 09:15", loc: "市中心與鼠輩城交界處",
                 desc: "嫌犯於市中心購買了一顆巨無霸糖霜甜甜圈，邊走邊吃時不慎手滑，甜甜圈滾入微型的「鼠輩城」區域。對小型囓齒動物而言，這顆甜甜圈猶如一顆「隕石」砸落街道。更嚴重的是，大量散落的糖霜導致鼠輩城市民引發集體「糖分亢奮（Sugar Rush）」，造成嚴重的交通癱瘓。嫌犯試圖用象鼻將甜甜圈吸回來，卻不小心把兩輛鼠輩城的警車一起吸了進去。",
@@ -855,27 +1077,19 @@
             return false;
         }
 
-        // Random Audio Player for non-functional buttons
-        const randAudioFiles = [
-            'audio/beep-warning).mp3',
-            'audio/creepy-laugh.mp3',
-            'audio/creepy-laugh-2.mp3',
-            'audio/failed.mp3',
-            'audio/girl-scream.mp3',
-            'audio/horror-warning.mp3',
-            'audio/scream.mp3',
-            'audio/woman-screaming.mp3'
-        ];
+        // Dynamic Audio Player for UI interactions
+        function playSound(filename) {
+            const audio = new Audio('audio/' + filename);
+            if (filename === 'failed.mp3') {
+                audio.currentTime = 1;
+            }
+            audio.play().catch(e => console.log(e));
 
-        function playRandomAudio() {
-            const idx = Math.floor(Math.random() * randAudioFiles.length);
-            const a = new Audio(randAudioFiles[idx]);
-            a.volume = 1.0;
-            a.play().catch(e => console.log(e));
+            // Limit audio playback to exactly 5 seconds
             setTimeout(() => {
-                a.pause();
-                a.currentTime = 0;
-            }, 2000); // 2 seconds
+                audio.pause();
+                audio.currentTime = 0;
+            }, 5000);
         }
 
         function triggerJumpscare() {
@@ -1062,6 +1276,12 @@
             document.getElementById('modal-error').textContent = '';
             document.getElementById('modal-content').classList.remove('glitch-bg');
             document.getElementById('modal-password').focus();
+            if (document.getElementById('matrix-bg')) {
+                document.getElementById('matrix-bg').classList.add('hidden');
+            }
+            if (document.getElementById('global-matrix-bg')) {
+                document.getElementById('global-matrix-bg').classList.add('hidden');
+            }
         }
 
         function showSystemUpdateNotification() {
@@ -1078,6 +1298,16 @@
                 window.successAudio.pause();
                 window.successAudio.loop = false;
             }
+            if (window.matrixInterval) {
+                clearInterval(window.matrixInterval);
+                window.matrixInterval = null;
+            }
+            if (window.globalMatrixInterval) {
+                clearInterval(window.globalMatrixInterval);
+                window.globalMatrixInterval = null;
+            }
+            document.getElementById('modal-content').classList.add('glass');
+            document.getElementById('modal-content').classList.remove('bg-black', 'glitch-shake');
         }
 
         function attemptDecrypt() {
@@ -1091,7 +1321,7 @@
                 // Need to dynamically create to not conflict with failed
                 if (!window.successAudio) {
                     window.successAudio = new Audio('audio/alert.mp3');
-                    window.successAudio.addEventListener('ended', function() {
+                    window.successAudio.addEventListener('ended', function () {
                         this.currentTime = 1;
                         this.play();
                     });
@@ -1101,8 +1331,37 @@
                 window.successAudio.loop = false; // Relies on ended event to loop from 1s
                 window.successAudio.play().catch(e => console.log(e));
 
-                // Add Glitch visual to modal
-                document.getElementById('modal-content').classList.add('glitch-bg');
+                // Start random matrix text for inner dialog
+                if (!window.matrixInterval) {
+                    const matrixEl = document.getElementById('matrix-bg');
+                    if (matrixEl) matrixEl.classList.remove('hidden');
+                    window.matrixInterval = setInterval(() => {
+                        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/\\';
+                        let text = '';
+                        for (let i = 0; i < 4000; i++) {
+                            text += chars.charAt(Math.floor(Math.random() * chars.length));
+                        }
+                        if (matrixEl) matrixEl.textContent = text;
+                    }, 50);
+                }
+
+                // Start global random matrix text (same style but green)
+                if (!window.globalMatrixInterval) {
+                    const globalMatrixEl = document.getElementById('global-matrix-bg');
+                    if (globalMatrixEl) globalMatrixEl.classList.remove('hidden');
+                    window.globalMatrixInterval = setInterval(() => {
+                        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/\\';
+                        let text = '';
+                        for (let i = 0; i < 15000; i++) {
+                            text += chars.charAt(Math.floor(Math.random() * chars.length));
+                        }
+                        if (globalMatrixEl) globalMatrixEl.textContent = text;
+                    }, 100);
+                }
+
+                // Add Glitch visual to modal background
+                document.getElementById('modal-content').classList.remove('glass');
+                document.getElementById('modal-content').classList.add('bg-black', 'glitch-shake');
                 document.body.classList.add('shake');
                 setTimeout(() => { document.body.classList.remove('shake'); }, 300);
 
